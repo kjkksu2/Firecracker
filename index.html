@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Firecracker</title>
+  </head>
+  <body>
+    <section class="firecracker-container">
+      <div class="firecracker">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </section>
+  </body>
+  <script>
+    const fireContainer = document.querySelector(".firecracker-container");
+    const firecracker = document.querySelector(".firecracker");
+    const colors = [
+      "#e67e22",
+      "#9b59b6",
+      "#1abc9c",
+      "#f1c40f",
+      "#c0392b",
+      "#2980b9",
+      "#4834d4",
+      "#22a6b3",
+    ];
+
+    function makeNewOne() {
+      const x = window.innerWidth * Math.random();
+      const y = window.innerHeight * Math.random();
+
+      const clone = firecracker.cloneNode(true);
+      fireContainer.appendChild(clone);
+
+      clone.style.left = x + "px";
+      clone.style.top = y + "px";
+      clone.style.display = "initial";
+
+      const lines = document.querySelectorAll(".line");
+      lines.forEach((line) => {
+        const idx = Math.floor(Math.random() * colors.length);
+        line.style.background = colors[idx];
+      });
+
+      setTimeout(() => {
+        clone.style.display = "none";
+      }, 8000);
+    }
+
+    setInterval(makeNewOne, 200);
+  </script>
+</html>
